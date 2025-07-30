@@ -1,0 +1,33 @@
+name: Run Daily Data Pipeline
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # Runs daily at 2 AM UTC
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Restore credentials.json
+        run: echo '${{ secrets.GCP_CREDENTIALS_JSON }}' > credentials.json
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Script
+        env:
+          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+        run: python main.py
+
+      - name: Cleanup credentials.json
+        run: rm -f credentials.json

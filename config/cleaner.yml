@@ -1,0 +1,67 @@
+glassdoor:
+  columns_to_remove: ["job_job_types/1", "job_job_types/2", "job_levels", "job_language", "job_location/zip", "job_apply_url", "job_benefits_tags/0", "job_benefits_tags/1", "job_benefits_tags/2", "job_shifts_and_schedule_tags", "job_sponsored",
+           "job_poster_first_name", "job_poster_last_name", "job_poster_linkedin_profile_url", "company_revenue", "company_linkedin_follower_count", "company_logo", "job_salary/estimated", "company_short_name", "company_sizes_str", "company_size", "company_description", "company_foundation_date", "company_tag_line", "company_industries", "job_location/city", "job_location/country", "job_location/unknown", "company_url", "job_salary/currency_symbol", "company_locations", "job_industry"]
+
+  columns_to_merge:
+    location: ["company_headquarters_location/city", "company_headquarters_location/unknown"]
+    salary_info: ["job_salary/currency", "job_salary/pay_period" ]
+
+  columns_to_rename:
+    job_title: "job_title"
+    company_name: "company_name"
+    location: "company_location"
+    job_posted_date: "post_date"
+    job_job_types/0: "job_type"
+    job_description: "job_description"
+    salary_info: "salary"
+    job_url: "job_url"
+    company_website: "company_website"
+
+  column_sort_order:   ["company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "company_website", "post_date"]
+
+
+
+indeed:
+  columns_to_remove: ["companyLogoUrl", "location/formattedAddressShort", "location/latitude", "location/longitude", "jobType/1", "campanyHeaderUrl", "companyUrl", "rating/count", "rating/rating", "descriptionHtml",
+       "benefits/0", "benefits/1", "benefits/2", "benefits/3", "benefits/4", "benefits/5", "benefits/6", "benefits/7", "benefits/8", "benefits/9", "benefits/10", "benefits/11", "benefits/12", "benefits/13",
+       "benefits/14", "benefits/15", "benefits/16", "occupation/0", "occupation/1", "occupation/2", "occupation/3", "occupation/4", "occupation/5", "occupation/6", "occupation/7", "attributes/1", "attributes/3", "attributes/4",
+       "attributes/5", "attributes/6", "attributes/7", "attributes/8", "attributes/9", "attributes/11", "attributes/12", "attributes/13",   "attributes/14", "attributes/15", "attributes/16", "attributes/17", "attributes/18",
+       "attributes/19", "attributes/20", "attributes/21", "attributes/22", "attributes/23", "attributes/24", "attributes/25", "attributes/26", "attributes/27", "attributes/28", "attributes/29", "attributes/30", "attributes/31",
+       "attributes/32", "attributes/33", "attributes/34", "attributes/35", "attributes/36", "attributes/37", "attributes/38", "attributes/39", "attributes/40", "workingSystem", "numOfCandidates", "source", "hiringDemand.isUrgentHire",
+       "hiringDemand.isHighVolumeHiring", "locale", "salary/salarySource", "salary.salaryMin", "salary.salaryMax", "salary.salaryText", "salary.salaryType", "salary.salaryCurrency",
+       "expired", "postedToday", "scrapingInfo.page", "scrapingInfo.index", "jobKey", "emails/0", "emails/1", "isRemote", "socialInsurance/0", "shiftAndSchedule/0", "shiftAndSchedule/1", "shiftAndSchedule/2", "organicApplyStarts", "applyUrl",
+       "requirements/0/label", "requirements/0/requirementSeverity", "shiftAndSchedule/3", "attributes/0", "attributes/2", "salary.salarySource", "attributes/10"]
+
+  columns_to_merge:
+    location: ['location/city', 'location/country', 'location/countryCode', 'location/formattedAddressLong', 'location/fullAddress', 'location/postalCode', 'location/streetAddress']
+    salary_info: ['salary/salaryCurrency', 'salary/salaryMax', 'salary/salaryMin', 'salary/salaryText', 'salary/salaryType']
+
+  columns_to_rename:
+    title: "job_title"
+    companyName: "company_name"
+    location: "company_location"
+    age: "post_date"
+    jobType/0: "job_type"
+    descriptionText: "job_description"
+    salary_info: "salary"
+    jobUrl: "job_url"
+
+  column_sort_order: [ "company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "post_date" ]
+
+
+
+linkedIn:
+  columns_to_remove: ["posterProfileUrl", "posterFullName", "descriptionHtml", "companyId", "workType", "experienceLevel", "sector"]
+
+  columns_to_rename:
+    title: "job_title"
+    companyName: "company_name"
+    location: "company_location"
+    postedTime: "post_date"
+    contractType: "job_type"
+    description: "job_description"
+    salary: "salary"
+    jobUrl: "job_url"
+    companyUrl: "company_website"
+
+  column_sort_order: [ "company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "company_website", "post_date" ]
