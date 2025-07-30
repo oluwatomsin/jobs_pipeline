@@ -2,12 +2,16 @@ name: Run Daily Data Pipeline
 
 on:
   schedule:
-    - cron: "0 2 * * *"   # Runs daily at 2 AM UTC
+    - cron: "0 9 * * *"   # Runs daily at 9 AM UTC (10 AM WAT)
   workflow_dispatch:
 
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
+    env:
+      APP_KEY: ${{ secrets.APP_KEY }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
     steps:
       - name: Checkout Repository
@@ -24,9 +28,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Script
-        env:
-          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+      - name: Run Pipeline Script
         run: python main.py
 
       - name: Cleanup credentials.json

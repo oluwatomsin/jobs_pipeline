@@ -1,24 +1,40 @@
 import os
+import requests
 import dropbox
 from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
 
+APP_KEY = os.getenv("APP_KEY")
+APP_SECRET = os.getenv("APP_SECRET")
+REFRESH_TOKEN = os.getenv("REFRESH_TOKEN")
+
 
 class DropboxUploader:
-    def __init__(self, dropbox_folder, access_token=None):
+    def __init__(self, dropbox_folder):
         """
-        Initialize the Dropbox uploader.
-        :param access_token: Dropbox API access token.
+        Initialize the Dropbox uploader using refresh-token-based OAuth.
         :param dropbox_folder: Folder path in Dropbox where files will be uploaded.
         """
-        self.access_token = access_token or os.getenv("DROPBOX_ACCESS_TOKEN")
-        if not self.access_token:
-            raise ValueError("❌ Dropbox access token is missing. Set DROPBOX_ACCESS_TOKEN in environment variables.")
-
         self.dropbox_folder = dropbox_folder
+        self.access_token = self._get_access_token()  # ✅ now private inside class
         self.dbx = dropbox.Dropbox(self.access_token)
+
+    def _get_access_token(self):
+        """🔒 Private: Fetch a new access token using the refresh token."""
+        url = "https://api.dropboxapi.com/oauth2/token"
+        data = {
+            "grant_type": "refresh_token",
+            "refresh_token": REFRESH_TOKEN,
+            "client_id": APP_KEY,
+            "client_secret": APP_SECRET,
+        }
+        response = requests.post(url, data=data)
+        response.raise_for_status()
+        token = response.json()["access_token"]
+        print("✅ Access token refreshed.")
+        return token
 
     def _generate_dropbox_path(self, local_file_path):
         """Generate a Dropbox file path with today's date appended."""
