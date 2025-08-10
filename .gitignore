@@ -17,3 +17,5 @@ credentials_mine.json
 
 # Other files
 data/
+sample.py
+test.py

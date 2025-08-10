@@ -12,6 +12,11 @@ jobs:
       APP_KEY: ${{ secrets.APP_KEY }}
       APP_SECRET: ${{ secrets.APP_SECRET }}
       REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+      SF_password: ${{ secrets.SF_password }}
+      SF_security_token: ${{ secrets.SF_security_token }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+
 
     steps:
       - name: Checkout Repository
