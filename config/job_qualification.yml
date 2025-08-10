@@ -1,0 +1,241 @@
+prompt_v1:
+
+  Context:
+    Check if the job posts that we prospect are a good fit for our services at salaria. To explain our prospecting/outreach methodology.
+    With this strategy which we call the SDR recruitment strategy, we are targeting companies that are hiring for sales development or business development representatives i.e. BDRs or SDR positions 
+    which is a junior sales position that is focused on top of the funnel sales tasks the exact same tasks that salaria specializes in. 
+    This is different from our AE strategy, where we are targeting companies that are hiring for AE positions. 
+    With that strategy, we are making an argument to companies that they should hire us to help support their sales reps 
+    so instead of their sales reps doing all of the full sales cycle of activities themselves, including top of the funnel 
+    sales tasks, we can take care of those tasks for their sales reps and their sales reps can be more focused on revenue 
+    generating activities. With the SDR Strategy, We look for companies with open SDR job posts and send them outreach to 
+    introduce ourselves as an alternative to hiring internally. We also work with companies that have internal teams, we 
+    usually will augment existing SDR teams.
+
+
+  Rules:
+    1. When over 90% of what you find on the job description meets our requirements, then you can call it qualified. 
+    Sometimes there are words on the job description that might throw you off and make you think its unqualified, but if over 90% of what you find its a top-of-the-funnel, lead generation, sales associate level position, then call it qualified. 
+    Also focus on the requirements and overview of the job. Don’t worry about skills and relevant experience section. 
+    In that section, it might say something like “you are a “closer”  don’t get tripped up on that word as its in the relevant experience section and 
+    they are just saying they want someone with a closing mentality, and it doesnt necessarily mean that you will have to close in this position. 
+    2. The thing that constantly disqualifies a job post for the SDR/BDR strategy is that the job is for a full sales cycle sales position that is more focused on closing. 
+    Sometimes, the team gets confused because the job post might look like its for a BDR/SDR because it uses a lot of the same keywords but ultimately, the position is more a fully closing position. 
+    In this case, I want you to label the job post not as unqualified but it should be labeled “AE strategy” as we have another strategy for job posts that we find for full sales cycle sales people. 
+    Its entirely different messaging do just make sure you label it correctly so we know which message to send them.
+
+
+  Job Post Requirements:
+    1. The job must be for a position IN THE USA
+    2. Keywords to look for in the job post; cold calling, list building, sales development, lead generation, top-of-funnel, support Account Executive, support Sales Manager. Prospecting, appointment setting, demand generation, sales support
+    3. It cannot be a manager level position - it has to be all junior level positions 
+    4. No part-time, contract work, must be full time 
+    5. If it's a SDR job post, then it should be a minimum salary of 50K+ per year
+    6. no hourly positions, 
+    7. if you label it for AE strategy, then it should be a minimum $100K+ per year position. 
+    8. No hourly work or contract work permitted
+
+  Here are good titles of job posts that are approved:
+    Business Development Lead /Sales Development Lead
+    Outbound BDR/SDR
+    Senior Business Development/ Sales Development
+    Business Engagement Specialist
+    Sales Support Representative
+    Demand Generation or Lead Generation
+    Cold Caller / Cold Call
+    Cold Calling Expert
+    Lead generation
+    Sales Development Associate/Representative
+    Business Development Associate/Representative
+    Opportunity Development Representative
+    Account Development Representative
+    Sales & Business Development Specialist
+    CRM B2B Sales And Marketing Business Development Professional Associate 
+    Business Development Coordinator
+    Entry Level Sales / Appointment Setter
+    Client Development Representative
+    Lead Development Specialist/Expert
+    New Business Development Specialist
+    Telemarketing Representative
+    Business Development & Communications Specialist
+    Client Development Representative
+    Sales Center Representative
+    Demand Generation Specialist/Expert
+    Marketing/Market Development Representative
+    Elite Lead Generation Expert
+    Outbound Lead Specialist
+    Marketing & Development Associate
+    Sales Associate
+    Sales and Marketing Associate
+    Remote Market Development Representative
+
+
+  Avoid job postings with these phrases:
+    close deals
+    generate business
+    conduct meetings
+    run presentations to clients
+    generate pipeline
+    generate new business
+    run/conduct sale call
+
+
+  Salaria's services:
+    Services
+    We help clients scale lead generation and sales development by seamlessly augmenting existing teams or fully managing everything from end to end. 
+    While competitors use AI to cut corners and costs, we use it to sharpen personalization, improve targeting, and drive better performance. 
+    We call leads one by one—no robo dialers—so we clear spam filters and personalize every pitch. With our flexible, month-to-month contracts, you can scale up or down as needed.
+  
+    Human/AI-Enabled Cold Calling
+    We call leads one by one—no robo dialers—so we clear spam filters and personalize every pitch.
+  
+    Hyper-Personalized Email Marketing
+    Deep public and proprietary data + AI + human edits = true personalization, not generic spam blasts
+  
+    Targeted LinkedIn & Social Outreach
+    We elevate your brand across LinkedIn and social—critical channels for reaching today’s B2B buyers
+  
+    Custom Market Research & Prospecting
+    We use cutting-edge data tools and custom research strategies to target and personalize with precision
+  
+    Rapid Inbound Lead
+    Response
+    Live human reps respond instantly to inbound leads—and follow up across every channel until they convert
+  
+    AI-Driven Outbound
+    Lead Gen
+    An AI-driven outbound tool for hands-on teams—supported by real lead gen experts when it counts
+  
+    Cross-Functional Appointment Setting
+    We coordinate meetings across teams, territories & stakeholders—fully integrated into your systems & processes
+
+  required_inputs:
+    Below, I have listed the requirements for qualifying a company as well as the requirements for qualifying the job post.
+    Now, I’m going to copy and paste a
+    [`job post and the company url, and the Linkedin company profile`]
+
+
+
+prompt_v2:
+  job_post_analysis:
+    objective: >
+      Determine whether a job post qualifies for:
+      - SDR Strategy: Salaria should outreach with SDR-focused messaging.
+      - AE Strategy: Salaria should outreach with AE-support messaging.
+      - Disqualified: Salaria should not outreach based on disqualifying factors.
+
+    strategy_definitions:
+      sdr_strategy: >
+        Target companies hiring junior-level Sales Development (SDR) or Business Development (BDR) reps focused on 
+        top-of-funnel tasks like prospecting, cold calling, and appointment setting. These roles match the exact 
+        functions Salaria provides and are ideal for replacement or augmentation.
+
+      ae_strategy: >
+        Target companies hiring Account Executives (AEs) or full-cycle salespeople. These roles handle closing and 
+        require different messaging. Salaria’s pitch here is to support existing AEs by handling top-of-funnel tasks so 
+        they can focus on revenue-generating activities.
+
+    sdr_qualification:
+      required:
+        - job_location: USA
+        - level: Junior (not Manager or Director)
+        - employment_type: Full-time
+        - minimum_salary: 50000 usd
+        - responsibilities:
+            - cold calling
+            - lead generation
+            - prospecting
+            - appointment setting
+            - support AEs or Sales Managers
+            - sales development
+            - list building
+            - demand generation
+            - sales support
+
+    disqualification_criteria:
+      disqualify_if:
+        - senior_titles:
+            - Manager
+            - Director
+        - employment_type:
+            - Contract
+            - Part-time
+            - Hourly
+        - salary_too_low:
+            - SDR: < 50000
+            - AE: < 100000
+        - location: Outside USA
+
+    ae_strategy_qualification:
+      conditions:
+        - full_time: true
+        - location: USA
+        - not_senior_level: true
+        - minimum_salary: 100000
+        - responsibilities_include:
+            - closing deals
+            - sales calls or presentations
+            - generate pipeline or new business
+            - client relationship ownership
+            - conduct meetings
+
+    red_flag_keywords_for_ae:
+      - close deals
+      - generate business
+      - run sales calls
+      - conduct sales calls
+      - pipeline ownership
+      - present to clients
+      - conduct meetings
+      - generate new business
+
+    approved_sdr_titles:
+      - Business Development Lead
+      - Sales Development Lead
+      - Outbound SDR
+      - Outbound BDR
+      - Sales Development Representative
+      - Sales Development Associate
+      - Business Development Representative
+      - Business Development Associate
+      - Opportunity Development Representative
+      - Account Development Representative
+      - Sales Support Representative
+      - Client Development Representative
+      - Lead Development Specialist
+      - Lead Development Expert
+      - Appointment Setter
+      - Entry-Level Sales
+      - Cold Caller
+      - Cold Calling Expert
+      - Demand Generation Specialist
+      - Telemarketing Representative
+      - CRM B2B Sales and Marketing Development
+      - Marketing Development Representative
+      - Market Development Representative
+      - Sales and Business Development Specialist
+      - Marketing and Development Associate
+      - Remote Market Development Representative
+      - Elite Lead Generation Expert
+
+    analysis_rules:
+      - if 90_percent_or_more_matches_sdr: label_as_sdr_strategy
+      - if sdr_keywords_but_full_cycle_closing: label_as_ae_strategy
+      - if fails_core_criteria: label_as_disqualified_with_reason
+
+    Exceptions:
+      - if the job post does not have a salary indicate, the criteria for checking acceptable salary range should not apply, meaning the salary is approved in this case.
+
+
+    about_salaria:
+      - Human/AI Cold Calling: One-to-one, no robodialers
+      - Hyper-Personalized Email Campaigns: Real personalization, not spam
+      - Targeted LinkedIn Outreach: Engage across critical social channels
+      - Custom Market Research: Pinpoint the right prospects
+      - Live Inbound Response: Real reps, real-time follow-up
+      - AI-Driven Outbound Tools: Supported by human experts
+      - Cross-Functional Appointment Setting: Integrated with client systems
+      - Month-to-month flexibility
+
+    required_inputs:
+      - full_job_post

@@ -1,6 +1,123 @@
 glassdoor:
-  columns_to_remove: ["job_job_types/1", "job_job_types/2", "job_levels", "job_language", "job_location/zip", "job_apply_url", "job_benefits_tags/0", "job_benefits_tags/1", "job_benefits_tags/2", "job_shifts_and_schedule_tags", "job_sponsored",
-           "job_poster_first_name", "job_poster_last_name", "job_poster_linkedin_profile_url", "company_revenue", "company_linkedin_follower_count", "company_logo", "job_salary/estimated", "company_short_name", "company_sizes_str", "company_size", "company_description", "company_foundation_date", "company_tag_line", "company_industries", "job_location/city", "job_location/country", "job_location/unknown", "company_url", "job_salary/currency_symbol", "company_locations", "job_industry"]
+  columns_to_remove: ['all/__typename','all/baseUrl','all/employerAttributes','all/employerAttributes/__typename','all/employerAttributes/attributes/0/__typename','all/employerAttributes/attributes/0/attributeName',
+                  'all/employerAttributes/attributes/0/attributeValue','all/employerAttributes/attributes/1/__typename','all/employerAttributes/attributes/1/attributeName','all/employerAttributes/attributes/1/attributeValue',
+                  'all/employerAttributes/attributes/2/__typename','all/employerAttributes/attributes/2/attributeName','all/employerAttributes/attributes/2/attributeValue','all/employerAttributes/attributes/3/__typename',
+                  'all/employerAttributes/attributes/3/attributeName','all/employerAttributes/attributes/3/attributeValue','all/employerBenefits','all/employerBenefits/__typename','all/employerBenefits/benefitReviews/0/__typename',
+                  'all/employerBenefits/benefitReviews/0/benefitComments/0/__typename','all/employerBenefits/benefitReviews/0/benefitComments/0/comment','all/employerBenefits/benefitReviews/0/benefitComments/0/id','all/employerBenefits/benefitReviews/0/cityName',
+                  'all/employerBenefits/benefitReviews/0/createDate','all/employerBenefits/benefitReviews/0/currentJob','all/employerBenefits/benefitReviews/0/rating','all/employerBenefits/benefitReviews/0/stateName',
+                  'all/employerBenefits/benefitReviews/0/userEnteredJobTitle','all/employerBenefits/benefitReviews/1/__typename','all/employerBenefits/benefitReviews/1/benefitComments/0/__typename','all/employerBenefits/benefitReviews/1/benefitComments/0/comment',
+                  'all/employerBenefits/benefitReviews/1/benefitComments/0/id','all/employerBenefits/benefitReviews/1/cityName','all/employerBenefits/benefitReviews/1/createDate','all/employerBenefits/benefitReviews/1/currentJob',
+                  'all/employerBenefits/benefitReviews/1/rating','all/employerBenefits/benefitReviews/1/stateName','all/employerBenefits/benefitReviews/1/userEnteredJobTitle','all/employerBenefits/benefitReviews/2/__typename',
+                  'all/employerBenefits/benefitReviews/2/benefitComments/0/__typename','all/employerBenefits/benefitReviews/2/benefitComments/0/comment','all/employerBenefits/benefitReviews/2/benefitComments/0/id','all/employerBenefits/benefitReviews/2/cityName',
+                  'all/employerBenefits/benefitReviews/2/createDate','all/employerBenefits/benefitReviews/2/currentJob','all/employerBenefits/benefitReviews/2/rating','all/employerBenefits/benefitReviews/2/stateName','all/employerBenefits/benefitReviews/2/userEnteredJobTitle',
+                  'all/employerBenefits/benefitsOverview/__typename','all/employerBenefits/benefitsOverview/benefitsHighlights/0/__typename','all/employerBenefits/benefitsOverview/benefitsHighlights/0/benefit/__typename',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/0/benefit/commentCount','all/employerBenefits/benefitsOverview/benefitsHighlights/0/benefit/icon','all/employerBenefits/benefitsOverview/benefitsHighlights/0/benefit/name',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/0/highlightPhrase','all/employerBenefits/benefitsOverview/benefitsHighlights/1/__typename','all/employerBenefits/benefitsOverview/benefitsHighlights/1/benefit/__typename',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/1/benefit/commentCount','all/employerBenefits/benefitsOverview/benefitsHighlights/1/benefit/icon','all/employerBenefits/benefitsOverview/benefitsHighlights/1/benefit/name',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/1/highlightPhrase','all/employerBenefits/benefitsOverview/benefitsHighlights/2/__typename','all/employerBenefits/benefitsOverview/benefitsHighlights/2/benefit/__typename',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/2/benefit/commentCount','all/employerBenefits/benefitsOverview/benefitsHighlights/2/benefit/icon','all/employerBenefits/benefitsOverview/benefitsHighlights/2/benefit/name',
+                  'all/employerBenefits/benefitsOverview/benefitsHighlights/2/highlightPhrase','all/employerBenefits/benefitsOverview/employerBenefitSummary','all/employerBenefits/benefitsOverview/employerBenefitSummary/__typename',
+                  'all/employerBenefits/benefitsOverview/employerBenefitSummary/comment','all/employerBenefits/benefitsOverview/overallBenefitRating','all/employerBenefits/numReviews','all/employerContent','all/employerContent/__typename',
+                  'all/employerContent/diversityContent/__typename','all/employerContent/featuredVideoLink','all/employerContent/managedContent/0/__typename','all/employerContent/managedContent/0/body','all/employerContent/managedContent/0/captions',
+                  'all/employerContent/managedContent/0/captions/0','all/employerContent/managedContent/0/id','all/employerContent/managedContent/0/photos','all/employerContent/managedContent/0/photos/0','all/employerContent/managedContent/0/photos/1',
+                  'all/employerContent/managedContent/0/title','all/employerContent/managedContent/0/type','all/employerContent/managedContent/0/videos','all/employerContent/managedContent/0/videos/0','all/employerContent/managedContent/1/__typename',
+                  'all/employerContent/managedContent/1/body','all/employerContent/managedContent/1/captions','all/employerContent/managedContent/1/captions/0','all/employerContent/managedContent/1/id','all/employerContent/managedContent/1/photos',
+                  'all/employerContent/managedContent/1/photos/0','all/employerContent/managedContent/1/photos/1','all/employerContent/managedContent/1/title','all/employerContent/managedContent/1/type','all/employerContent/managedContent/1/videos',
+                  'all/employerContent/managedContent/1/videos/0','all/employerContent/managedContent/2/__typename','all/employerContent/managedContent/2/body','all/employerContent/managedContent/2/captions','all/employerContent/managedContent/2/captions/0',
+                  'all/employerContent/managedContent/2/id','all/employerContent/managedContent/2/photos','all/employerContent/managedContent/2/photos/0','all/employerContent/managedContent/2/photos/1','all/employerContent/managedContent/2/title',
+                  'all/employerContent/managedContent/2/type','all/employerContent/managedContent/2/videos','all/employerContent/managedContent/2/videos/0','all/employerContent/managedContent/3/__typename','all/employerContent/managedContent/3/body',
+                  'all/employerContent/managedContent/3/captions','all/employerContent/managedContent/3/captions/0','all/employerContent/managedContent/3/captions/1','all/employerContent/managedContent/3/id','all/employerContent/managedContent/3/photos',
+                  'all/employerContent/managedContent/3/photos/0','all/employerContent/managedContent/3/photos/1','all/employerContent/managedContent/3/title','all/employerContent/managedContent/3/type','all/employerContent/managedContent/3/videos',
+                  'all/employerContent/managedContent/3/videos/0','all/employerContent/managedContent/4/__typename','all/employerContent/managedContent/4/body','all/employerContent/managedContent/4/captions','all/employerContent/managedContent/4/captions/0',
+                  'all/employerContent/managedContent/4/captions/1','all/employerContent/managedContent/4/id','all/employerContent/managedContent/4/photos','all/employerContent/managedContent/4/photos/0','all/employerContent/managedContent/4/photos/1',
+                  'all/employerContent/managedContent/4/title','all/employerContent/managedContent/4/type','all/employerContent/managedContent/4/videos','all/employerContent/managedContent/4/videos/0','all/employerReviewSummary',
+                  'all/employerReviewSummary/__typename','all/employerReviewSummary/reviewSummary/__typename','all/employerReviewSummary/reviewSummary/highlightSummary','all/employerReviewSummary/reviewSummary/highlightSummary/0/__typename',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/0/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/0/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/0/sentiment',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/1/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/1/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/1/sentence',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/1/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/2/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/2/categoryReviewCount',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/2/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/2/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/3/__typename',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/3/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/3/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/3/sentiment',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/4/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/4/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/4/sentence',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/4/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/5/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/5/categoryReviewCount',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/5/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/5/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/6/__typename',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/6/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/6/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/6/sentiment',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/7/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/7/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/7/sentence',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/7/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/8/__typename','all/employerReviewSummary/reviewSummary/highlightSummary/8/categoryReviewCount',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/8/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/8/sentiment','all/employerReviewSummary/reviewSummary/highlightSummary/9/__typename',
+                  'all/employerReviewSummary/reviewSummary/highlightSummary/9/categoryReviewCount','all/employerReviewSummary/reviewSummary/highlightSummary/9/sentence','all/employerReviewSummary/reviewSummary/highlightSummary/9/sentiment',
+                  'all/gaTrackerData/__typename','all/gaTrackerData/isSponsoredFromIndeed','all/gaTrackerData/isSponsoredFromJobListingHit','all/gaTrackerData/jobViewDisplayTimeMillis','all/gaTrackerData/pageRequestGuid','all/gaTrackerData/requiresTracking',
+                  'all/gaTrackerData/searchTypeCode','all/gaTrackerData/trackingUrl','all/gdJobAttributes/__typename','all/gdJobAttributes/additionalPay','all/gdJobAttributes/additionalPay/__typename','all/gdJobAttributes/additionalPay/p25',
+                  'all/gdJobAttributes/additionalPay/p75','all/gdJobAttributes/basePay','all/gdJobAttributes/basePay/__typename','all/gdJobAttributes/basePay/p25','all/gdJobAttributes/basePay/p75','all/gdJobAttributes/salarySource','all/header/__typename',
+                  'all/header/adOrderId','all/header/adOrderSponsorshipLevel','all/header/advertiserType','all/header/ageInDays','all/header/applicationId','all/header/appliedDate','all/header/applyButtonDisabled','all/header/applyUrl','all/header/blur',
+                  'all/header/categoryMgocId','all/header/coverPhoto/__typename','all/header/coverPhoto/url','all/header/divisionEmployerName','all/header/easyApply','all/header/easyApplyMethod','all/header/employer/__typename','all/header/employer/activeStatus',
+                  'all/header/employer/bestProfile','all/header/employer/bestProfile/__typename','all/header/employer/bestProfile/id','all/header/employer/id','all/header/employer/name','all/header/employer/shortName','all/header/employer/size',
+                  'all/header/employer/squareLogoUrl','all/header/employerNameFromSearch','all/header/expired','all/header/goc','all/header/hideCEOInfo','all/header/hourlyWagePayPercentile','all/header/indeedApplyMetadata',
+                  'all/header/indeedJobAttribute/__typename','all/header/indeedJobAttribute/education/0','all/header/indeedJobAttribute/education/1','all/header/indeedJobAttribute/education/2','all/header/indeedJobAttribute/educationLabel/0',
+                  'all/header/indeedJobAttribute/educationLabel/1','all/header/indeedJobAttribute/educationLabel/2','all/header/indeedJobAttribute/skills/0','all/header/indeedJobAttribute/skills/1','all/header/indeedJobAttribute/skills/2',
+                  'all/header/indeedJobAttribute/skills/3','all/header/indeedJobAttribute/skills/4','all/header/indeedJobAttribute/skills/5','all/header/indeedJobAttribute/skills/6','all/header/indeedJobAttribute/skills/7','all/header/indeedJobAttribute/skills/8',
+                  'all/header/indeedJobAttribute/skills/9','all/header/indeedJobAttribute/skills/10','all/header/indeedJobAttribute/skills/11','all/header/indeedJobAttribute/skills/12','all/header/indeedJobAttribute/skills/13','all/header/indeedJobAttribute/skills/14',
+                  'all/header/indeedJobAttribute/skills/15','all/header/indeedJobAttribute/skillsLabel/0','all/header/indeedJobAttribute/skillsLabel/1','all/header/indeedJobAttribute/skillsLabel/2','all/header/indeedJobAttribute/skillsLabel/3',
+                  'all/header/indeedJobAttribute/skillsLabel/4','all/header/indeedJobAttribute/skillsLabel/5','all/header/indeedJobAttribute/skillsLabel/6','all/header/indeedJobAttribute/skillsLabel/7','all/header/indeedJobAttribute/skillsLabel/8',
+                  'all/header/indeedJobAttribute/skillsLabel/9','all/header/indeedJobAttribute/skillsLabel/10','all/header/indeedJobAttribute/skillsLabel/11','all/header/indeedJobAttribute/skillsLabel/12','all/header/indeedJobAttribute/skillsLabel/13',
+                  'all/header/indeedJobAttribute/skillsLabel/14','all/header/indeedJobAttribute/skillsLabel/15','all/header/indeedJobAttribute/yearsOfExperienceLabel/0','all/header/isIndexableJobViewPage','all/header/jobCountryId','all/header/jobLink',
+                  'all/header/jobResultTrackingKey','all/header/jobTitleText','all/header/jobType/0','all/header/jobType/1','all/header/jobType/2','all/header/jobType/3','all/header/jobTypeKeys/0','all/header/jobTypeKeys/1','all/header/jobTypeKeys/2',
+                  'all/header/jobTypeKeys/3','all/header/locId','all/header/locationName','all/header/locationType','all/header/needsCommission','all/header/normalizedJobTitle','all/header/organic','all/header/payCurrency','all/header/payPercentile10',
+                  'all/header/payPercentile50','all/header/payPercentile90','all/header/payPeriod','all/header/payPeriodAdjustedPay','all/header/payPeriodAdjustedPay/__typename','all/header/payPeriodAdjustedPay/p10','all/header/payPeriodAdjustedPay/p50',
+                  'all/header/payPeriodAdjustedPay/p90','all/header/rating','all/header/remoteWorkTypes','all/header/remoteWorkTypes/0','all/header/salarySource','all/header/savedJobId','all/header/seoJobLink','all/header/sgocId','all/header/sponsored',
+                  'all/header/urgencySignal','all/job/__typename','all/job/description','all/job/discoverDate','all/job/eolHashCode','all/job/importConfigId','all/job/jobReqId','all/job/jobSource','all/job/jobTitleId','all/job/jobTitleText','all/job/listingId',
+                  'all/jobListingAdminDetails/__typename','all/jobListingAdminDetails/adOrderId','all/jobListingAdminDetails/cpcVal','all/jobListingAdminDetails/importConfigId','all/jobListingAdminDetails/jobListingId','all/jobListingAdminDetails/jobSourceId',
+                  'all/jobListingAdminDetails/userEligibleForAdminJobDetails','all/map/__typename','all/map/address','all/map/cityName','all/map/country','all/map/employer/__typename','all/map/employer/id','all/map/employer/name','all/map/lat','all/map/lng',
+                  'all/map/locationName','all/map/postalCode','all/map/stateName',
+                  'all/overview/__typename','all/overview/ceo','all/overview/ceo/__typename','all/overview/ceo/name','all/overview/ceo/photoUrl','all/overview/headquarters','all/overview/id','all/overview/links','all/overview/links/__typename',
+                  'all/overview/links/benefitsUrl','all/overview/links/overviewUrl','all/overview/links/photosUrl','all/overview/links/reviewsUrl','all/overview/links/salariesUrl','all/overview/name','all/overview/primaryIndustry',
+                  'all/overview/primaryIndustry/__typename','all/overview/primaryIndustry/industryId','all/overview/primaryIndustry/industryName','all/overview/primaryIndustry/sectorId','all/overview/ratings','all/overview/ratings/__typename',
+                  'all/overview/ratings/careerOpportunitiesRating','all/overview/ratings/ceoRating','all/overview/ratings/ceoRatingsCount','all/overview/ratings/compensationAndBenefitsRating','all/overview/ratings/cultureAndValuesRating',
+                  'all/overview/ratings/overallRating','all/overview/ratings/recommendToFriendRating','all/overview/ratings/seniorManagementRating','all/overview/ratings/workLifeBalanceRating','all/overview/revenue','all/overview/shortName',
+                  'all/overview/sizeCategory','all/overview/squareLogoUrl','all/overview/type','all/overview/website','all/overview/yearFounded','all/photos','all/photos/__typename','all/photos/photos/0/__typename','all/photos/photos/0/caption',
+                  'all/photos/photos/0/photoId','all/photos/photos/0/photoId2x','all/photos/photos/0/photoLink','all/photos/photos/0/photoUrl','all/photos/photos/0/photoUrl2x','all/photos/photos/1/__typename','all/photos/photos/1/caption',
+                  'all/photos/photos/1/photoId','all/photos/photos/1/photoId2x','all/photos/photos/1/photoLink','all/photos/photos/1/photoUrl','all/photos/photos/1/photoUrl2x','all/photos/photos/2/__typename','all/photos/photos/2/caption',
+                  'all/photos/photos/2/photoId','all/photos/photos/2/photoId2x','all/photos/photos/2/photoLink','all/photos/photos/2/photoUrl','all/photos/photos/2/photoUrl2x','all/photos/photos/3/__typename','all/photos/photos/3/caption',
+                  'all/photos/photos/3/photoId','all/photos/photos/3/photoId2x','all/photos/photos/3/photoLink','all/photos/photos/3/photoUrl','all/photos/photos/3/photoUrl2x','all/photos/photos/4/__typename','all/photos/photos/4/caption',
+                  'all/photos/photos/4/photoId','all/photos/photos/4/photoId2x','all/photos/photos/4/photoLink','all/photos/photos/4/photoUrl','all/photos/photos/4/photoUrl2x','all/photos/photos/5/__typename','all/photos/photos/5/caption',
+                  'all/photos/photos/5/photoId','all/photos/photos/5/photoId2x','all/photos/photos/5/photoLink','all/photos/photos/5/photoUrl','all/photos/photos/5/photoUrl2x','all/photos/photos/6/__typename','all/photos/photos/6/caption',
+                  'all/photos/photos/6/photoId','all/photos/photos/6/photoId2x','all/photos/photos/6/photoLink','all/photos/photos/6/photoUrl','all/photos/photos/6/photoUrl2x','all/reviews','all/reviews/__typename',
+                  'all/reviews/reviews/0/__typename','all/reviews/reviews/0/advice','all/reviews/reviews/0/cons','all/reviews/reviews/0/countHelpful','all/reviews/reviews/0/employerResponses/0/__typename',
+                  'all/reviews/reviews/0/employerResponses/0/response','all/reviews/reviews/0/employerResponses/0/responseDateTime','all/reviews/reviews/0/employerResponses/0/userJobTitle','all/reviews/reviews/0/employmentStatus',
+                  'all/reviews/reviews/0/featured','all/reviews/reviews/0/isCurrentJob','all/reviews/reviews/0/jobTitle','all/reviews/reviews/0/jobTitle/__typename','all/reviews/reviews/0/jobTitle/text','all/reviews/reviews/0/lengthOfEmployment',
+                  'all/reviews/reviews/0/pros','all/reviews/reviews/0/ratingBusinessOutlook','all/reviews/reviews/0/ratingCareerOpportunities','all/reviews/reviews/0/ratingCeo','all/reviews/reviews/0/ratingCompensationAndBenefits',
+                  'all/reviews/reviews/0/ratingCultureAndValues','all/reviews/reviews/0/ratingOverall','all/reviews/reviews/0/ratingRecommendToFriend','all/reviews/reviews/0/ratingSeniorLeadership','all/reviews/reviews/0/ratingWorkLifeBalance',
+                  'all/reviews/reviews/0/reviewDateTime','all/reviews/reviews/0/reviewId','all/reviews/reviews/0/summary','all/reviews/reviews/1/__typename','all/reviews/reviews/1/advice','all/reviews/reviews/1/cons',
+                  'all/reviews/reviews/1/countHelpful','all/reviews/reviews/1/employerResponses/0/__typename','all/reviews/reviews/1/employerResponses/0/response','all/reviews/reviews/1/employerResponses/0/responseDateTime',
+                  'all/reviews/reviews/1/employerResponses/0/userJobTitle','all/reviews/reviews/1/employmentStatus','all/reviews/reviews/1/featured','all/reviews/reviews/1/isCurrentJob','all/reviews/reviews/1/jobTitle',
+                  'all/reviews/reviews/1/jobTitle/__typename','all/reviews/reviews/1/jobTitle/text','all/reviews/reviews/1/lengthOfEmployment','all/reviews/reviews/1/pros','all/reviews/reviews/1/ratingBusinessOutlook',
+                  'all/reviews/reviews/1/ratingCareerOpportunities','all/reviews/reviews/1/ratingCeo','all/reviews/reviews/1/ratingCompensationAndBenefits','all/reviews/reviews/1/ratingCultureAndValues','all/reviews/reviews/1/ratingOverall',
+                  'all/reviews/reviews/1/ratingRecommendToFriend','all/reviews/reviews/1/ratingSeniorLeadership','all/reviews/reviews/1/ratingWorkLifeBalance','all/reviews/reviews/1/reviewDateTime','all/reviews/reviews/1/reviewId',
+                  'all/reviews/reviews/1/summary','all/reviews/reviews/2/__typename','all/reviews/reviews/2/advice','all/reviews/reviews/2/cons','all/reviews/reviews/2/countHelpful','all/reviews/reviews/2/employerResponses/0/__typename',
+                  'all/reviews/reviews/2/employerResponses/0/response','all/reviews/reviews/2/employerResponses/0/responseDateTime','all/reviews/reviews/2/employerResponses/0/userJobTitle','all/reviews/reviews/2/employmentStatus',
+                  'all/reviews/reviews/2/featured','all/reviews/reviews/2/isCurrentJob','all/reviews/reviews/2/jobTitle','all/reviews/reviews/2/jobTitle/__typename','all/reviews/reviews/2/jobTitle/text',
+                  'all/reviews/reviews/2/lengthOfEmployment','all/reviews/reviews/2/pros','all/reviews/reviews/2/ratingBusinessOutlook','all/reviews/reviews/2/ratingCareerOpportunities','all/reviews/reviews/2/ratingCeo',
+                  'all/reviews/reviews/2/ratingCompensationAndBenefits','all/reviews/reviews/2/ratingCultureAndValues','all/reviews/reviews/2/ratingOverall','all/reviews/reviews/2/ratingRecommendToFriend',
+                  'all/reviews/reviews/2/ratingSeniorLeadership','all/reviews/reviews/2/ratingWorkLifeBalance','all/reviews/reviews/2/reviewDateTime','all/reviews/reviews/2/reviewId','all/reviews/reviews/2/summary',
+                  'all/reviews/reviews/3/__typename','all/reviews/reviews/3/advice','all/reviews/reviews/3/cons','all/reviews/reviews/3/countHelpful','all/reviews/reviews/3/employerResponses/0/__typename',
+                  'all/reviews/reviews/3/employerResponses/0/response','all/reviews/reviews/3/employerResponses/0/responseDateTime','all/reviews/reviews/3/employerResponses/0/userJobTitle','all/reviews/reviews/3/employmentStatus',
+                  'all/reviews/reviews/3/featured','all/reviews/reviews/3/isCurrentJob','all/reviews/reviews/3/jobTitle','all/reviews/reviews/3/jobTitle/__typename','all/reviews/reviews/3/jobTitle/text','all/reviews/reviews/3/lengthOfEmployment',
+                  'all/reviews/reviews/3/pros','all/reviews/reviews/3/ratingBusinessOutlook','all/reviews/reviews/3/ratingCareerOpportunities','all/reviews/reviews/3/ratingCeo','all/reviews/reviews/3/ratingCompensationAndBenefits',
+                  'all/reviews/reviews/3/ratingCultureAndValues','all/reviews/reviews/3/ratingOverall','all/reviews/reviews/3/ratingRecommendToFriend','all/reviews/reviews/3/ratingSeniorLeadership','all/reviews/reviews/3/ratingWorkLifeBalance',
+                  'all/reviews/reviews/3/reviewDateTime','all/reviews/reviews/3/reviewId','all/reviews/reviews/3/summary','all/reviews/reviews/4/__typename','all/reviews/reviews/4/advice','all/reviews/reviews/4/cons',
+                  'all/reviews/reviews/4/countHelpful','all/reviews/reviews/4/employerResponses/0/__typename','all/reviews/reviews/4/employerResponses/0/response','all/reviews/reviews/4/employerResponses/0/responseDateTime',
+                  'all/reviews/reviews/4/employerResponses/0/userJobTitle','all/reviews/reviews/4/employmentStatus','all/reviews/reviews/4/featured','all/reviews/reviews/4/isCurrentJob','all/reviews/reviews/4/jobTitle',
+                  'all/reviews/reviews/4/jobTitle/__typename','all/reviews/reviews/4/jobTitle/text','all/reviews/reviews/4/lengthOfEmployment','all/reviews/reviews/4/pros','all/reviews/reviews/4/ratingBusinessOutlook',
+                  'all/reviews/reviews/4/ratingCareerOpportunities','all/reviews/reviews/4/ratingCeo','all/reviews/reviews/4/ratingCompensationAndBenefits','all/reviews/reviews/4/ratingCultureAndValues','all/reviews/reviews/4/ratingOverall',
+                  'all/reviews/reviews/4/ratingRecommendToFriend','all/reviews/reviews/4/ratingSeniorLeadership','all/reviews/reviews/4/ratingWorkLifeBalance','all/reviews/reviews/4/reviewDateTime','all/reviews/reviews/4/reviewId',
+                  'all/reviews/reviews/4/summary','all/similarJobs/0/__typename','all/similarJobs/0/careerUrl','all/similarJobs/0/relatedJobTitle','all/similarJobs/1/__typename','all/similarJobs/1/careerUrl','all/similarJobs/1/relatedJobTitle',
+                  'all/similarJobs/2/__typename','all/similarJobs/2/careerUrl','all/similarJobs/2/relatedJobTitle','all/similarJobs/3/__typename','all/similarJobs/3/careerUrl','all/similarJobs/3/relatedJobTitle','all/similarJobs/4/__typename',
+                  'all/similarJobs/4/careerUrl','all/similarJobs/4/relatedJobTitle','all/similarJobs/5/__typename','all/similarJobs/5/careerUrl','all/similarJobs/5/relatedJobTitle','all/similarJobs/6/__typename','all/similarJobs/6/careerUrl',
+                  'all/similarJobs/6/relatedJobTitle','all/similarJobs/7/__typename','all/similarJobs/7/careerUrl','all/similarJobs/7/relatedJobTitle','all/similarJobs/8/__typename','all/similarJobs/8/careerUrl',
+                  'all/similarJobs/8/relatedJobTitle','all/similarJobs/9/__typename','all/similarJobs/9/careerUrl','all/similarJobs/9/relatedJobTitle','company_description','company_foundation_date','company_industries',
+                  'company_linkedin_follower_count','company_locations','company_logo','company_revenue','company_short_name','company_size','company_sizes_str','company_tag_line','company_url','job_benefits_tags/0','job_benefits_tags/1',
+                  'job_benefits_tags/2','job_candidate_numbers','job_description_html','job_id','job_industry','job_job_types/1','job_job_types/2','job_job_types/3','job_language','job_levels','job_location/city','job_location/country',
+                  'job_location/unknown','job_location/zip','job_normalized_title','job_poster_first_name','job_poster_last_name','job_poster_linkedin_profile_url','job_remote','job_salary/currency_symbol','job_salary/estimated',
+                  'job_shifts_and_schedule_tags','job_sponsored']
 
   columns_to_merge:
     location: ["company_headquarters_location/city", "company_headquarters_location/unknown"]
@@ -16,8 +133,11 @@ glassdoor:
     salary_info: "salary"
     job_url: "job_url"
     company_website: "company_website"
+    all/overview/primaryIndustry/sectorName: "industry"
+    all/overview/size: "size"
 
-  column_sort_order:   ["company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "company_website", "post_date"]
+  column_sort_order:   ["company_name", "company_location", "job_title", "job_description", "job_type", "salary",
+                        "job_url", "company_website", "industry", "size", "post_date"]
 
 
 
@@ -30,7 +150,27 @@ indeed:
        "attributes/32", "attributes/33", "attributes/34", "attributes/35", "attributes/36", "attributes/37", "attributes/38", "attributes/39", "attributes/40", "workingSystem", "numOfCandidates", "source", "hiringDemand.isUrgentHire",
        "hiringDemand.isHighVolumeHiring", "locale", "salary/salarySource", "salary.salaryMin", "salary.salaryMax", "salary.salaryText", "salary.salaryType", "salary.salaryCurrency",
        "expired", "postedToday", "scrapingInfo.page", "scrapingInfo.index", "jobKey", "emails/0", "emails/1", "isRemote", "socialInsurance/0", "shiftAndSchedule/0", "shiftAndSchedule/1", "shiftAndSchedule/2", "organicApplyStarts", "applyUrl",
-       "requirements/0/label", "requirements/0/requirementSeverity", "shiftAndSchedule/3", "attributes/0", "attributes/2", "salary.salarySource", "attributes/10"]
+       "requirements/0/label", "requirements/0/requirementSeverity", "shiftAndSchedule/3", "attributes/0","attributes/2", "salary.salarySource", "attributes/10", 'language', 'requirements/1/label',
+        'requirements/1/requirementSeverity', 'requirements/2/label', 'requirements/2/requirementSeverity', 'requirements/3/label', 'requirements/3/requirementSeverity', 'requirements/4/label',
+        'requirements/4/requirementSeverity', 'requirements/5/label', 'requirements/5/requirementSeverity', 'requirements/6/label', 'requirements/6/requirementSeverity', 'requirements/7/label',
+        'requirements/7/requirementSeverity', 'requirements/8/label', 'requirements/8/requirementSeverity', 'requirements/9/label', 'requirements/9/requirementSeverity','requirements/10/label',
+        'requirements/10/requirementSeverity', 'requirements/11/label', 'requirements/11/requirementSeverity', 'requirements/12/label', 'requirements/12/requirementSeverity', 'requirements/13/label',
+        'requirements/13/requirementSeverity', 'requirements/14/label', 'requirements/14/requirementSeverity', 'requirements/15/label', 'requirements/15/requirementSeverity', 'requirements/16/label',
+        'requirements/16/requirementSeverity', 'requirements/17/label', 'requirements/17/requirementSeverity', 'requirements/18/label', 'requirements/18/requirementSeverity', 'requirements/19/label',
+        'requirements/19/requirementSeverity', 'requirements/20/label', 'requirements/20/requirementSeverity', 'requirements/21/label', 'requirements/21/requirementSeverity', 'requirements/22/label',
+        'requirements/22/requirementSeverity', 'requirements/23/label', 'requirements/23/requirementSeverity', 'requirements/24/label', 'requirements/24/requirementSeverity', 'requirements/25/label',
+        'requirements/25/requirementSeverity', 'requirements/26/label', 'requirements/26/requirementSeverity', 'requirements/27/label', 'requirements/27/requirementSeverity', 'requirements/28/label',
+        'requirements/28/requirementSeverity', 'requirements/29/label', 'requirements/29/requirementSeverity', 'requirements/30/label', 'requirements/30/requirementSeverity', 'requirements/31/label',
+        'requirements/31/requirementSeverity', 'requirements/32/label', 'requirements/32/requirementSeverity', 'requirements/33/label', 'requirements/33/requirementSeverity', 'requirements/34/label',
+        'requirements/34/requirementSeverity', 'requirements/35/label', 'requirements/35/requirementSeverity', 'scrapingInfo/index', 'scrapingInfo/page', 'shiftAndSchedule/4', 'shiftAndSchedule/5',
+        'attributes/41', 'attributes/42', 'attributes/43', 'attributes/44', 'attributes/45', 'attributes/46', 'attributes/47', 'attributes/48', 'attributes/49', 'attributes/50', 'attributes/51',
+        'attributes/52', 'attributes/53', 'benefits/17', 'companyAddresses/0', 'companyBriefDescription', 'companyCeo/name', 'companyCeo/photoUrl', 'companyCeo/startDate', 'companyDescription', 'companyFounded/year',
+        'companyLinks/corporateWebsite', 'companyLinks/customLinks/0/name', 'companyLinks/customLinks/0/url', 'companyLinks/customLinks/1/name', 'companyLinks/customLinks/1/url', 'companyLinks/customLinks/2/name', 'companyLinks/customLinks/2/url',
+        'companyLinks/customLinks/3/name', 'companyLinks/customLinks/3/url', 'companyLinks/customLinks/4/name', 'companyLinks/customLinks/4/url', 'companyLinks/customLinks/5/name', 'companyLinks/customLinks/5/url', 'companyLinks/customLinks/6/name',
+        'companyLinks/customLinks/6/url', 'companyLinks/facebook', 'companyLinks/instagram', 'companyLinks/twitter', 'companyRevenue', 'contacts/0/contactEmail', 'contacts/0/contactName', 'contacts/0/contactPhone', 'contacts/1/contactEmail',
+        'contacts/1/contactName', 'contacts/1/contactPhone', 'contacts/2/contactEmail', 'contacts/2/contactName', 'contacts/2/contactEmail', 'contacts/2/contactName', 'contacts/2/contactPhone', 'hiringDemand/isHighVolumeHiring',
+        'hiringDemand/isUrgentHire', 'jobType/2', 'jobType/3', 'jobType/4', 'jobType/5']
+
 
   columns_to_merge:
     location: ['location/city', 'location/country', 'location/countryCode', 'location/formattedAddressLong', 'location/fullAddress', 'location/postalCode', 'location/streetAddress']
@@ -45,13 +185,16 @@ indeed:
     descriptionText: "job_description"
     salary_info: "salary"
     jobUrl: "job_url"
+    companyIndustry: "industry"
+    companyNumEmployees: "size"
 
-  column_sort_order: [ "company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "post_date" ]
 
+  column_sort_order: ["company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url",
+                    "industry", "size", "post_date"]
 
 
 linkedIn:
-  columns_to_remove: ["posterProfileUrl", "posterFullName", "descriptionHtml", "companyId", "workType", "experienceLevel", "sector"]
+  columns_to_remove: ["posterProfileUrl", "posterFullName", "descriptionHtml", "companyId", "workType", "experienceLevel", 'applicationsCount', 'applyType', 'applyUrl', 'benefits', 'publishedAt', 'id']
 
   columns_to_rename:
     title: "job_title"
@@ -63,5 +206,7 @@ linkedIn:
     salary: "salary"
     jobUrl: "job_url"
     companyUrl: "company_website"
+    sector: "industry"
 
-  column_sort_order: [ "company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "company_website", "post_date" ]
+
+  column_sort_order: [ "company_name", "company_location", "job_title", "job_description",  "job_type", "salary", "job_url", "company_website", "industry", "post_date" ]

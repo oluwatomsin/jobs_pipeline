@@ -75,4 +75,5 @@ class DataPreprocessor:
         # Merging the columns into 1
         concatenated_df = pd.concat(datasets, ignore_index=True)
         concatenated_df.to_csv(output_path, index=False)
+        print(f"✅ Data Cleaned successfully and saved to {output_path}")
         return True

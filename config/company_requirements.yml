@@ -1,0 +1,57 @@
+prompt_v1:
+  Company Requirements and Geography
+
+  The company has to be headquartered in the USA - including their parent company  
+
+  The Employee Headcount (including Parent Company) can be no bigger than 11-1000 employees. For employee headcount, when you are qualifying or unqualifying a business based upon employee headcount, 
+    make sure to reference the section of the LinkedIn company page labeled associated members, not the number range.
+
+
+  We are not allowed to prospect these kinds of companies
+  Salaria competitors - lead generation business/similar businesses/appointment setting
+  B2C companies and franchises - with the exception of CPG brands that are looking to sell to retailers - be careful not to disqualify B2C companies that are looking to go into enterprise sales or do b2b sales - make sure to really read the job description, Recruitment and staffing companies
+  Recruitment and staffing companies
+  IT Staffing/Consulting Firm - companies that are do software development consulting or outsourcing firms
+  Small Business Loan companies
+  Payment processing/POS companies
+  Car/Automotive Dealerships
+  Marketing/Advertising services
+  Sales Agencies (sales tools, anything sales related)
+  B2C / Consumer to Consumer Construction/Manual Labor/Home/Commercial Services/home facility services companies
+  Non Profit Organizations / Associations
+  Software development/ IT development/services
+
+
+prompt_v2:
+  company_requirements:
+    geography:
+      location: USA
+      note: >
+        If this information is not available, assume this is unqualified
+
+    employee_headcount:
+      range: 11-1000
+      note: >
+        If this information is not available, assume this is unqualified 
+
+    disqualified_company_types:
+      - Salaria competitors i.e other lead generation organizations
+      - Lead generation businesses
+      - Appointment setting companies
+      - B2C companies and franchises
+      - Recruitment and staffing companies
+      - IT staffing or consulting firms
+      - Software development or outsourcing companies
+      - Small business loan providers
+      - Payment processing or POS companies
+      - Car or automotive dealerships
+      - Marketing and advertising services
+      - Sales agencies or companies offering sales-related tools or services
+      - Consumer-to-consumer companies
+      - Construction, manual labor, home/commercial services, or home facility services
+      - Non-profit organizations or associations
+      - Software development, IT services, or tech consultancies
+
+    exceptions:
+      - CPG brands selling to retailers (allowed)
+      - B2C companies with clear intent to enter B2B or enterprise sales (case-by-case, read job description carefully)
