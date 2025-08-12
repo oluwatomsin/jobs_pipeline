@@ -85,9 +85,13 @@ class CompanySizeFiller:
                 raise ValueError(f"Missing column: '{col}'")
 
         missing_rows = df[df[size_col].isnull()].copy()
-        print(f"[bold yellow]Found {len(missing_rows)} rows with missing size info.[/bold yellow]")
 
-        for idx, row in missing_rows.iterrows():
+        # Only process rows that are not Disqualified
+        process_rows = missing_rows[missing_rows["label"] != "Disqualified"]
+
+        print(f"[bold yellow]Found {len(process_rows)} rows with missing size info.[/bold yellow]")
+
+        for idx, row in process_rows.iterrows():
             company_name = row[company_col]
             industry = row[industry_col]
 

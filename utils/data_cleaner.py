@@ -74,6 +74,14 @@ class DataPreprocessor:
 
         # Merging the columns into 1
         concatenated_df = pd.concat(datasets, ignore_index=True)
+
+        # Removing duplicated rows.
+        before = len(concatenated_df)
+
+        # Removing duplicated rows.
+        concatenated_df.drop_duplicates(inplace=True)
+        removed = before - len(concatenated_df)
+
         concatenated_df.to_csv(output_path, index=False)
-        print(f"✅ Data Cleaned successfully and saved to {output_path}")
+        print(f"✅ Data Cleaned successfully and saved to {output_path} — {removed} duplicates removed")
         return True

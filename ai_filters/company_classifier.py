@@ -113,26 +113,25 @@ Only return the JSON output.
 
         print(f"[blue]Loaded {len(df)} records from {input_csv_path}[/blue]")
 
-        # Apply classification row by row
-        results = []
-        for _, row in df.iterrows():
+        # Filter rows to process (skip Disqualified)
+        to_process = df[df["label"] != "Disqualified"]
+
+        print(f"[blue]Loaded {len(df)} records from {input_csv_path}[/blue]")
+        print(f"[yellow]Skipping {len(df) - len(to_process)} disqualified rows during processing.[/yellow]")
+
+        # Apply classification only to rows to process
+        results = {}
+        for idx, row in to_process.iterrows():
             industry = str(row["industry"])
             size = str(row["size"])
             location = str(row["company_location"])
             result = await self.classify(size, industry, location)
-            results.append(result)
+            results[idx] = result
 
-        # Add new column
-        df["Is_company_qualified"] = results
+        # Update original df with new classifications
+        for idx, label in results.items():
+            df.at[idx, "Is_company_qualified"] = label
 
-        # Count and remove disqualified
-        disqualified_count = (df["Is_company_qualified"] == "Disqualified").sum()
-        df = df[df["Is_company_qualified"] == "Qualified"]
-
-        print(f"[green]Removed {disqualified_count} disqualified companies.[/green]")
-        print(f"[green]Remaining: {len(df)} companies[/green]")
-
-        # Save result
+        # Save full dataset with disqualified rows still present
         df.to_csv(output_csv_path, index=False)
-        print(f"[bold blue]Saved qualified companies to {output_csv_path}[/bold blue]")
-
+        print(f"[bold blue]Saved full dataset (including skipped disqualified rows) to {output_csv_path}[/bold blue]")

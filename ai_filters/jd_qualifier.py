@@ -129,8 +129,10 @@ class JobClassifier:
         df.drop(columns=["job_post"], inplace=True)
 
         # Filter out Disqualified jobs
-        df = df[df["label"] != "Disqualified"].reset_index(drop=True)
-        removed_count = initial_count - len(df)
+        # df = df[df["label"] != "Disqualified"].reset_index(drop=True)
+        # removed_count = initial_count - len(df)
 
-        print(f"[green]Job qualification done,[/green] [bold]{removed_count}[/bold] unqualified jobs have been removed.")
+        removed_count = len(df[df["label"] == "Disqualified"])
+
+        print(f"[green]Job qualification done,[/green] [bold]{removed_count}[/bold] unqualified jobs were found.")
         return df

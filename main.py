@@ -71,7 +71,6 @@ def orchestrate():
         # Job Classification
         df = pd.read_csv(filtered_data_file_path)
         classifier = JobClassifier(limit_rows=None)
-
         async def run_job_classification():
             processed_df = await classifier.process_dataframe(df)
             processed_df.to_csv(jd_classified_path, index=False)  # overwrite file
