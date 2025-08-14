@@ -82,6 +82,12 @@ class DataPreprocessor:
         concatenated_df.drop_duplicates(inplace=True)
         removed = before - len(concatenated_df)
 
+        # 🔹 Remove rows with missing or empty job_description
+        if "job_description" in concatenated_df.columns:
+            concatenated_df = concatenated_df[
+                concatenated_df["job_description"].notna() &
+                (concatenated_df["job_description"].str.strip() != "")
+                ]
         concatenated_df.to_csv(output_path, index=False)
         print(f"✅ Data Cleaned successfully and saved to {output_path} — {removed} duplicates removed")
         return True
