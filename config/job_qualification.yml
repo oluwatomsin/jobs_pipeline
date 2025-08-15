@@ -36,38 +36,61 @@ prompt_v1:
     8. No hourly work or contract work permitted
 
   Here are good titles of job posts that are approved:
-    Business Development Lead /Sales Development Lead
-    Outbound BDR/SDR
-    Senior Business Development/ Sales Development
+    Business Development Lead
+    Sales Development Lead
+    Outbound Business Development Representative
+    Outbound Sales Development Representative
+    Senior Business Development Representative
+    Senior Sales Development Representative
     Business Engagement Specialist
     Sales Support Representative
-    Demand Generation or Lead Generation
-    Cold Caller / Cold Call
+    Demand Generation Specialist
+    Lead Generation Specialist
+    Cold Caller
+    Cold Call Specialist
     Cold Calling Expert
-    Lead generation
-    Sales Development Associate/Representative
-    Business Development Associate/Representative
+    Lead Generation Specialist
+    Sales Development Associate
+    Sales Development Representative
+    Business Development Associate
+    Business Development Representative
     Opportunity Development Representative
     Account Development Representative
-    Sales & Business Development Specialist
-    CRM B2B Sales And Marketing Business Development Professional Associate 
+    Sales and Business Development Specialist
+    CRM B2B Sales and Marketing Business Development Professional Associate
     Business Development Coordinator
-    Entry Level Sales / Appointment Setter
+    Entry Level Sales Representative
+    Appointment Setter
     Client Development Representative
-    Lead Development Specialist/Expert
+    Lead Development Specialist
+    Lead Development Expert
     New Business Development Specialist
     Telemarketing Representative
-    Business Development & Communications Specialist
-    Client Development Representative
+    Business Development and Communications Specialist
     Sales Center Representative
-    Demand Generation Specialist/Expert
-    Marketing/Market Development Representative
+    Demand Generation Specialist
+    Demand Generation Expert
+    Marketing Development Representative
+    Market Development Representative
     Elite Lead Generation Expert
     Outbound Lead Specialist
-    Marketing & Development Associate
-    Sales Associate
+    Marketing and Development Associate
     Sales and Marketing Associate
     Remote Market Development Representative
+    Sales & GTM Associate
+    Remote Market Development Representative
+    Inside Sales Representative
+    Sales Representative
+    Outside Sales Representative
+    Call Center Representative
+    Inside Sales coordinator
+    B2B Sales Consultant
+    B2B Sales Representative
+    Account Representative
+    Sales Account Executive
+    Sales Executive
+    Inside Sales Executive
+    Sales Specialist
 
 
   Avoid job postings with these phrases:
@@ -192,31 +215,61 @@ prompt_v2:
     approved_sdr_titles:
       - Business Development Lead
       - Sales Development Lead
-      - Outbound SDR
-      - Outbound BDR
-      - Sales Development Representative
+      - Outbound Business Development Representative
+      - Outbound Sales Development Representative
+      - Senior Business Development Representative
+      - Senior Sales Development Representative
+      - Business Engagement Specialist
+      - Sales Support Representative
+      - Demand Generation Specialist
+      - Lead Generation Specialist
+      - Cold Caller
+      - Cold Call Specialist
+      - Cold Calling Expert
+      - Lead Generation Specialist
       - Sales Development Associate
-      - Business Development Representative
+      - Sales Development Representative
       - Business Development Associate
+      - Business Development Representative
       - Opportunity Development Representative
       - Account Development Representative
-      - Sales Support Representative
+      - Sales and Business Development Specialist
+      - CRM B2B Sales and Marketing Business Development Professional Associate
+      - Business Development Coordinator
+      - Entry Level Sales Representative
+      - Appointment Setter
       - Client Development Representative
       - Lead Development Specialist
       - Lead Development Expert
-      - Appointment Setter
-      - Entry-Level Sales
-      - Cold Caller
-      - Cold Calling Expert
-      - Demand Generation Specialist
+      - New Business Development Specialist
       - Telemarketing Representative
-      - CRM B2B Sales and Marketing Development
+      - Business Development and Communications Specialist
+      - Sales Center Representative
+      - Demand Generation Specialist
+      - Demand Generation Expert
       - Marketing Development Representative
       - Market Development Representative
-      - Sales and Business Development Specialist
-      - Marketing and Development Associate
-      - Remote Market Development Representative
       - Elite Lead Generation Expert
+      - Outbound Lead Specialist
+      - Marketing and Development Associate
+      - Sales and Marketing Associate
+      - Remote Market Development Representative
+      - Sales & GTM Associate
+      - Remote Market Development Representative
+      - Inside Sales Representative
+      - Sales Representative
+      - Outside Sales Representative
+      - Call Center Representative
+      - Inside Sales coordinator
+      - B2B Sales Consultant
+      - B2B Sales Representative
+      - Account Representative
+      - Sales Account Executive
+      - Sales Executive
+      - Inside Sales Executive
+      - Sales Specialist
+      - Inbound Lead Coordinator
+      - Client Outreach Specialist
 
     analysis_rules:
       - if 90_percent_or_more_matches_sdr: label_as_sdr_strategy

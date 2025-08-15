@@ -27,7 +27,8 @@ class DataPreprocessor:
         for new_col, cols in merge_column_names.items():
             # Build dict-like string for each row
             def row_to_dict(row):
-                non_nulls = {col: row[col] for col in cols if pd.notna(row[col])}
+                # non_nulls = {col: row[col] for col in cols if pd.notna(row[col])}
+                non_nulls = {col: row[col] for col in cols if col in row and pd.notna(row[col])}
                 return str(non_nulls)
 
             df[new_col] = df.apply(row_to_dict, axis=1)
@@ -47,7 +48,8 @@ class DataPreprocessor:
 
     def _sort_columns(self, df: pd.DataFrame, source: Literal["glassdoor", "indeed", "linkedIn"]) -> pd.DataFrame:
         new_column_order = self.config[source].get("column_sort_order")
-        df_custom_sorted = df[new_column_order]
+        # df_custom_sorted = df[new_column_order]
+        df_custom_sorted = df[[col for col in new_column_order if col in df.columns]]
         return df_custom_sorted
 
     def runner(self, output_path):
