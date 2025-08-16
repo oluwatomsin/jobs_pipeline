@@ -1,5 +1,6 @@
 import json
 import yaml
+import asyncio
 import pandas as pd
 from rich import print
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -7,14 +8,18 @@ from langchain_core.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 from dotenv import load_dotenv
 from data_schema.schema import JobQualifier
-import asyncio
 
 load_dotenv()
 
+new_model = "gemini-2.5-flash-lite"
+old_model = "gemini-2.5-flash-preview-05-20"
+
 class JobClassifier:
-    def __init__(self, yaml_path: str = "config/job_qualification.yml", limit_rows: int | None = 10):
+    def __init__(self, yaml_path: str = "config/job_qualification.yml", limit_rows: int | None = 10,
+                 max_concurrency: int = 60):
         # ✅ limit_rows is configurable for testing
         self.limit_rows = limit_rows
+        self.semaphore = asyncio.Semaphore(max_concurrency)
 
         # Load YAML configuration
         with open(yaml_path, "r") as file:
@@ -25,7 +30,7 @@ class JobClassifier:
 
         # LLM Model setup
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash-preview-05-20",
+            model=new_model,
             temperature=0.1,
             max_retries=2
         )
@@ -47,29 +52,34 @@ class JobClassifier:
         )
 
     async def classify_job(self, job_post: str) -> str:
-        """Classifies a single job post into ['SDR Strategy', 'AE Strategy', 'Disqualified']"""
-        prompt_str = self.prompt.format(query=job_post)
-        output = self.llm.invoke([{"role": "user", "content": prompt_str}])
+        """Classifies a single job post into ['SDR Strategy', 'AE Strategy', 'Disqualified'] with concurrency control."""
+        async with self.semaphore:
+            print(f"[yellow]Starting classification for a job post of length {len(job_post)}...[/yellow]")
+            prompt_str = self.prompt.format(query=job_post)
 
-        content = output.content if hasattr(output, "content") else output
-        content = content.strip()
+            # Use ainvoke for asynchronous model calls
+            output = await self.llm.ainvoke([{"role": "user", "content": prompt_str}])
 
-        # Clean up JSON markers if present
-        if content.startswith("```json"):
-            content = content[7:]
-        if content.startswith("```"):
-            content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
+            content = output.content if hasattr(output, "content") else output
+            content = content.strip()
 
-        try:
-            parsed = self.parser.parse(content)
-            return parsed.label  # JobQualifier must have 'label'
-        except Exception as e:
-            print("[yellow]Could not parse output as JobQualifier. Raw output:[/yellow]")
-            print("[red]Error:[/red]", e)
-            return "Disqualified"  # fallback if parsing fails
+            # Clean up JSON markers if present
+            if content.startswith("```json"):
+                content = content[7:]
+            if content.startswith("```"):
+                content = content[3:]
+            if content.endswith("```"):
+                content = content[:-3]
+            content = content.strip()
+
+            try:
+                parsed = self.parser.parse(content)
+                print(f"[green]Finished classification. Result: {parsed.label}[/green]")
+                return parsed.label  # JobQualifier must have 'label'
+            except Exception as e:
+                print("[yellow]Could not parse output as JobQualifier. Raw output:[/yellow]")
+                print("[red]Error:[/red]", e)
+                return "Disqualified"  # fallback if parsing fails
 
     def _format_job_post(self, title: str, description: str, job_type: str, salary: str) -> str:
         """Formats job details into a structured prompt text."""
@@ -89,7 +99,6 @@ class JobClassifier:
         2. Classifies each job concurrently
         3. Adds 'label' column
         4. Removes 'job_post' column
-        5. Filters out rows where label == 'Disqualified'
         """
         required_columns = ["job_title", "job_description", "job_type", "salary"]
         for col in required_columns:
@@ -100,7 +109,7 @@ class JobClassifier:
         if self.limit_rows:
             df = df.head(self.limit_rows)
 
-        print("[cyan]Job Qualification in progress ...[/cyan]")
+        print(f"[cyan]Job Qualification in progress. Processing {len(df)} rows...[/cyan]")
 
         # Create formatted job_post column
         df["job_post"] = df.apply(
@@ -110,27 +119,15 @@ class JobClassifier:
             axis=1
         )
 
-        # ✅ Use concurrency with a semaphore to avoid hitting API limits
-        semaphore = asyncio.Semaphore(10)  # Adjust max concurrency if needed
-
-        async def classify_with_limit(post):
-            async with semaphore:
-                return await self.classify_job(post)
-
-        # ✅ Run all job classifications concurrently
-        tasks = [classify_with_limit(post) for post in df["job_post"]]
+        # ✅ Run all job classifications concurrently using a gather
+        tasks = [self.classify_job(post) for post in df["job_post"]]
         labels = await asyncio.gather(*tasks)
 
         # Add labels
         df["label"] = labels
 
-        # Remove temporary job_post column
-        initial_count = len(df)
-        df.drop(columns=["job_post"], inplace=True)
 
-        # Filter out Disqualified jobs
-        # df = df[df["label"] != "Disqualified"].reset_index(drop=True)
-        # removed_count = initial_count - len(df)
+        df.drop(columns=["job_post"], inplace=True)
 
         removed_count = len(df[df["label"] == "Disqualified"])
 

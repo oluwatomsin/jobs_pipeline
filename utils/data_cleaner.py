@@ -67,13 +67,17 @@ class DataPreprocessor:
                 raise f"{url} is not from allowed source or not correctly named."
 
             # Processing files
-            data = pd.read_csv(url)
-            data_sample = self._remove_redundant_columns(data, source=source_)
-            output = self._merge_columns(data_sample, source=source_)
-            new_output = self._rename_columns(df=output, source=source_)
-            sorted_columns = self._sort_columns(new_output, source=source_)
-            datasets.append(sorted_columns)
-
+            try:
+                data = pd.read_csv(url)
+                data_sample = self._remove_redundant_columns(data, source=source_)
+                output = self._merge_columns(data_sample, source=source_)
+                new_output = self._rename_columns(df=output, source=source_)
+                sorted_columns = self._sort_columns(new_output, source=source_)
+                datasets.append(sorted_columns)
+            except pd.errors.ParserError:
+                print(f"{url} file seems to be empty. Skipping ...")
+            except Exception as e:
+                print(f"Unknown error occurred while processing : {url}")
         # Merging the columns into 1
         concatenated_df = pd.concat(datasets, ignore_index=True)
 

@@ -10,12 +10,16 @@ from langchain.output_parsers import PydanticOutputParser
 from data_schema.schema import CompanyQualifier
 
 
+new_model = "gemini-2.5-flash-lite"
+old_model = "gemini-2.5-flash-preview-05-20"
+
 class CompanyClassifier:
     def __init__(
-        self,
-        config_path: str = "config/company_requirements.yml",
-        model_name: str = "gemini-2.5-flash-preview-05-20",
-        temperature: float = 0.1
+            self,
+            config_path: str = "config/company_requirements.yml",
+            model_name: str = new_model,
+            temperature: float = 0.1,
+            max_concurrency: int = 60
     ):
         load_dotenv()
 
@@ -32,6 +36,9 @@ class CompanyClassifier:
             temperature=temperature,
             max_retries=2
         )
+
+        # Initialize semaphore for concurrency control
+        self.semaphore = asyncio.Semaphore(max_concurrency)
 
         # Output parser
         self.parser = PydanticOutputParser(pydantic_object=CompanyQualifier)
@@ -60,46 +67,45 @@ Only return the JSON output.
 
     async def classify(self, n_employees: str, company_industry: str, company_location: str) -> str:
         """
-        Classify a single company as Qualified or Disqualified.
-
-        Parameters:
-        - n_employees: Company size (employee count)
-        - company_industry: Industry the company operates in
-        - company_location: Geographic location of the company
-
-        Returns:
-        - str: "Qualified" or "Disqualified"
+        Classify a single company as Qualified or Disqualified with concurrency control.
         """
-        company_info = (
-            f"company's Industry info: {company_industry}\n"
-            f"company's employee head count info: {n_employees}\n"
-            f"company's location info: {company_location}"
-        )
-
-        prompt_str = self.prompt.format(query=company_info)
-        output = self.llm.invoke([{"role": "user", "content": prompt_str}])
-        content = output.content.strip() if hasattr(output, "content") else str(output).strip()
-
-        # Clean markdown/codeblock wrappers
-        if content.startswith("```json"):
-            content = content[7:]
-        if content.startswith("```"):
-            content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-
-        try:
-            parsed = self.parser.parse(content)
-            return parsed.label  # Return the label string only
-        except Exception as e:
+        async with self.semaphore:
             print(
-                f"[yellow]Error parsing result for [{company_industry}, {n_employees}, {company_location}]:[/yellow] {e}")
-            return "Disqualified"  # Fail-safe default
+                f"[yellow]Starting classification for: {company_industry}, {n_employees}, {company_location}[/yellow]")
+            company_info = (
+                f"company's Industry info: {company_industry}\n"
+                f"company's employee head count info: {n_employees}\n"
+                f"company's location info: {company_location}"
+            )
+
+            prompt_str = self.prompt.format(query=company_info)
+            # Use ainvoke for asynchronous model calls
+            output = await self.llm.ainvoke([{"role": "user", "content": prompt_str}])
+            content = output.content.strip() if hasattr(output, "content") else str(output).strip()
+
+            # Clean markdown/codeblock wrappers
+            if content.startswith("```json"):
+                content = content[7:]
+            if content.startswith("```"):
+                content = content[3:]
+            if content.endswith("```"):
+                content = content[:-3]
+            content = content.strip()
+
+            try:
+                parsed = self.parser.parse(content)
+                label = parsed.label
+                print(
+                    f"[green]Finished classification for: {company_industry}, {n_employees}, {company_location}. Result: {label}[/green]")
+                return label  # Return the label string only
+            except Exception as e:
+                print(
+                    f"[red]Error parsing result for [{company_industry}, {n_employees}, {company_location}]:[/red] {e}")
+                return "Disqualified"  # Fail-safe default
 
     async def process_dataset(self, input_csv_path: str, output_csv_path: str) -> None:
         """
-        Load CSV, classify companies, drop disqualified ones, and save the cleaned file.
+        Load CSV, classify companies concurrently, and save the updated file.
         """
         df = pd.read_csv(input_csv_path)
 
@@ -113,25 +119,25 @@ Only return the JSON output.
 
         print(f"[blue]Loaded {len(df)} records from {input_csv_path}[/blue]")
 
-        # Filter rows to process (skip Disqualified)
-        to_process = df[df["label"] != "Disqualified"]
-
-        print(f"[blue]Loaded {len(df)} records from {input_csv_path}[/blue]")
-        print(f"[yellow]Skipping {len(df) - len(to_process)} disqualified rows during processing.[/yellow]")
-
-        # Apply classification only to rows to process
-        results = {}
-        for idx, row in to_process.iterrows():
+        # Prepare a list of tasks for asyncio.gather
+        tasks = []
+        for idx, row in df.iterrows():
             industry = str(row["industry"])
             size = str(row["size"])
             location = str(row["company_location"])
-            result = await self.classify(size, industry, location)
-            results[idx] = result
+            tasks.append(self.classify(size, industry, location))
 
-        # Update original df with new classifications
-        for idx, label in results.items():
-            df.at[idx, "Is_company_qualified"] = label
+        print(f"[cyan]Starting concurrent classification tasks on {len(df)} rows...[/cyan]")
 
-        # Save full dataset with disqualified rows still present
+        # Run all tasks concurrently and await all results
+        results = await asyncio.gather(*tasks)
+
+        # Update the original DataFrame with the results
+        df["Is_company_qualified"] = results
+
+        # Optional: You can filter the DataFrame here if needed
+        # df = df[df["Is_company_qualified"] != "Disqualified"]
+
+        # Save the full dataset with new classifications
         df.to_csv(output_csv_path, index=False)
-        print(f"[bold blue]Saved full dataset (including skipped disqualified rows) to {output_csv_path}[/bold blue]")
+        print(f"[bold blue]Saved full dataset to {output_csv_path}[/bold blue]")
