@@ -79,7 +79,7 @@ async def orchestrate():
         return
 
     print("[cyan]Starting Job Classification...[/cyan]")
-    job_classifier = JobClassifier(limit_rows=120) # Increased limit for a more realistic scenario
+    job_classifier = JobClassifier(limit_rows=None) # Increased limit for a more realistic scenario
     # Await the async method call
     processed_df = await job_classifier.process_dataframe(df)
     processed_df.to_csv(jd_classified_path, index=False)
